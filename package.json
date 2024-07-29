@@ -1,6 +1,6 @@
 {
   "name": "cuka",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Cuka web app framework",
   "main": "dist/cuka.js",
   "exports": {
@@ -9,6 +9,7 @@
       "import": "./dist/cuka.mjs"
     }
   },
+  "types": "lib/cuka.d.ts",
   "scripts": {
     "build": "rollup --config rollup.config.mjs",
     "test:cjs": "node test/app.js",
@@ -17,7 +18,7 @@
   "engines": {
     "node": ">=7.6.0"
   },
-  "keywords": [],
+  "keywords": ["cuka", "Cuka", "http", "web", "framework", "middleware"],
   "author": "",
   "license": "MIT",
   "devDependencies": {
@@ -25,6 +26,7 @@
     "rollup": "^4.19.1"
   },
   "files": [
-    "dist"
+    "dist",
+    "lib"
   ]
 }
