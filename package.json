@@ -1,11 +1,11 @@
 {
   "name": "cuka",
   "version": "1.0.0",
-  "description": "",
+  "description": "Cuka web app framework",
   "type": "module",
   "main": "src/main.js",
   "scripts": {
-    "start": "node src/main.js"
+    "test": "node test/index.js"
   },
   "keywords": [],
   "author": "",
