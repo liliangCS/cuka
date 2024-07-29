@@ -8,7 +8,7 @@
 npm install cuka
 ```
 
-### 基础用法
+### 快速上手
 
 ```js
 const Cuka = require("cuka");
