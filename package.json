@@ -5,9 +5,16 @@
   "type": "module",
   "main": "src/main.js",
   "scripts": {
-    "test": "node test/index.js"
+    "build": "rollup --config rollup.config.js"
+  },
+  "engines": {
+    "node": ">=14.13.1"
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "rollup": "^4.19.1"
+  }
 }
