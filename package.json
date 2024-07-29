@@ -1,6 +1,6 @@
 {
   "name": "cuka",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cuka web app framework",
   "main": "dist/cuka.js",
   "exports": {
@@ -12,7 +12,7 @@
   "scripts": {
     "build": "rollup --config rollup.config.mjs",
     "test:cjs": "node test/app.js",
-    "test:mjs": "node test/app.mjs"
+    "test:esm": "node test/app.mjs"
   },
   "engines": {
     "node": ">=7.6.0"
