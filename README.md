@@ -1,6 +1,6 @@
 # Cuka
 
-一个基于 NodeJS 的轻量级且无任何其他依赖的 HTTP 服务开发框架。
+一个基于 NodeJS 的轻量级且无任何其他依赖的 HTTP 服务开发框架。同时支持cjs和esm两种模块化规范。
 
 ### 安装
 
@@ -8,7 +8,7 @@
 npm install cuka
 ```
 
-### 使用
+### 基础用法
 
 ```js
 const Cuka = require("cuka");
