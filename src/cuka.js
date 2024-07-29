@@ -6,6 +6,7 @@ class Cuka {
     this._httpServer = null;
     this._router = new Map();
     this._header = new Map();
+    this._middlewares = [];
   }
 
   /**
@@ -30,6 +31,14 @@ class Cuka {
    */
   on(route, method, callback) {
     this._router.set(route, [method.toUpperCase(), callback]);
+  }
+
+  /**
+   * 添加中间件
+   * @param {Function} middleware - 中间件函数
+   */
+  use(middleware) {
+    this._middlewares.push(middleware);
   }
 
   /**
@@ -73,45 +82,53 @@ class Cuka {
   }
 
   _handleRequest(req, res) {
-    const { route, query } = this._parseQuery(req.url);
-    const matchResult = this._matchRoute(route, req.method);
+    try {
+      const { route, query } = this._parseQuery(req.url);
+      const matchResult = this._matchRoute(route, req.method);
 
-    if (matchResult === 0) {
-      res.writeHead(404, { "Content-Type": "text/plain" });
-      res.end("Not Found");
-      return;
-    }
-
-    if (matchResult === 1) {
-      res.writeHead(405, { "Content-Type": "text/plain" });
-      res.end("Method Not Allowed");
-      return;
-    }
-
-    let body = "";
-    req.on("data", (chunk) => {
-      body += chunk;
-    });
-
-    req.on("end", async () => {
-      const ctx = {
-        req,
-        res,
-        request: { query, route, body, method: req.method },
-        setHeader: res.setHeader.bind(res),
-        end: res.end.bind(res)
-      };
-
-      try {
-        this._setGlobalHeader(res);
-        const callback = this._router.get(route)[1];
-        await callback(ctx);
-      } catch (error) {
-        res.writeHead(500, { "Content-Type": "text/plain" });
-        res.end("Internal Server Error");
-        console.error(error);
+      if (matchResult === 0) {
+        res.writeHead(404, { "Content-Type": "text/plain" });
+        res.end("Not Found");
+        return;
       }
-    });
+
+      if (matchResult === 1) {
+        res.writeHead(405, { "Content-Type": "text/plain" });
+        res.end("Method Not Allowed");
+        return;
+      }
+
+      let body = "";
+      req.on("data", (chunk) => {
+        body += chunk;
+      });
+      req.on("end", async () => {
+        const ctx = {
+          req,
+          res,
+          request: { query, route, body, method: req.method },
+          setHeader: res.setHeader.bind(res),
+          end: res.end.bind(res)
+        };
+
+        try {
+          this._setGlobalHeader(res);
+          for (const middleware of this._middlewares) {
+            await middleware(ctx);
+          }
+          const callback = this._router.get(route)[1];
+          await callback(ctx);
+        } catch (error) {
+          res.writeHead(500, { "Content-Type": "text/plain" });
+          res.end("Internal Server Error");
+          console.error(error);
+        }
+      });
+    } catch (error) {
+      res.writeHead(500, { "Content-Type": "text/plain" });
+      res.end("Internal Server Error");
+      console.error(error);
+    }
   }
 }
 
