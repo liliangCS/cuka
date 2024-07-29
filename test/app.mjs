@@ -1,4 +1,4 @@
-const Cuka = require("../dist/cuka.js");
+import Cuka from "../dist/cuka.mjs";
 
 const app = new Cuka();
 

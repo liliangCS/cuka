@@ -1,4 +1,4 @@
-import { createServer } from "node:http";
+import { createServer } from "http";
 
 class Cuka {
   constructor() {
@@ -132,4 +132,4 @@ class Cuka {
   }
 }
 
-export default Cuka;
+export { Cuka as default };

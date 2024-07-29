@@ -2,13 +2,20 @@
   "name": "cuka",
   "version": "1.0.0",
   "description": "Cuka web app framework",
-  "type": "module",
-  "main": "src/main.js",
+  "main": "dist/cuka.js",
+  "exports": {
+    ".": {
+      "require": "./dist/cuka.js",
+      "import": "./dist/cuka.mjs"
+    }
+  },
   "scripts": {
-    "build": "rollup --config rollup.config.js"
+    "build": "rollup --config rollup.config.mjs",
+    "test:cjs": "node test/app.js",
+    "test:mjs": "node test/app.mjs"
   },
   "engines": {
-    "node": ">=14.13.1"
+    "node": ">=7.6.0"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +23,8 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.3",
     "rollup": "^4.19.1"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
