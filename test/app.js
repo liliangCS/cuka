@@ -1,4 +1,4 @@
-const Cuka = require("cuka");
+const Cuka = require("../dist/cuka.js");
 
 const app = new Cuka();
 
