@@ -38,7 +38,7 @@ declare module "cuka" {
     private _parseQuery(url: string): IQueryObject;
     private _handleRequest(req: IncomingMessage, res: ServerResponse): void;
 
-    listen(port: number, callback: () => void): void;
+    listen(port: number, callback?: () => void): void;
     on(route: string, method: string, callback: MiddlewareFunction): void;
     use(middleware: MiddlewareFunction): void;
     setHeader(name: string, value: HeaderValue): void;
