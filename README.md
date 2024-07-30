@@ -3,9 +3,9 @@
 一个基于 NodeJS 的轻量级且无任何其他依赖的 HTTP 服务开发框架。同时支持 cjs 和 esm 两种模块化规范。
 
 框架特性：
-- 支持自定义中间件函数，支持对请求进行预处理
-- 内置错误处理，保证服务稳定运行不崩溃，安全运行一百年
-- 路由、方法、处理函数 三段式设计，丝滑的开发体验
+1. 支持自定义中间件函数，支持对请求进行预处理。
+2. 内置错误处理，保证服务稳定运行不崩溃，安全运行一百年。
+3. 路由、方法、处理函数 三段式设计，丝滑的开发体验。
 
 ### 安装
 
@@ -31,7 +31,7 @@ app.on("/", "get", (ctx) => {
 
 ### 设置响应头部
 
-1. 设置所有请求的响应头部
+1. 设置全局响应头部
 
 ```js
 import Cuka from "cuka";
@@ -42,7 +42,7 @@ app.listen(3000, () => {
   console.log("Server is listening on http://127.0.0.1:3000");
 });
 
-// 设置全局响应头部，对每个进来的请求生效
+// 设置全局响应头部，对所有请求生效
 app.setHeader("Content-Type", "text/plain;charset=utf-8");
 
 app.on("/", "get", (ctx) => {
@@ -50,7 +50,7 @@ app.on("/", "get", (ctx) => {
 });
 ```
 
-2. 设置单个请求的响应头部
+2. 设置局部响应头部
 
 ```js
 import Cuka from "cuka";
@@ -62,7 +62,7 @@ app.listen(3000, () => {
 });
 
 app.on("/", "get", (ctx) => {
-  // 设置单个请求的响应头部，只对当前请求生效
+  // 设置局部响应头部，只对当前请求生效
   ctx.setHeader("Content-Type", "text/plain;charset=utf-8");
   ctx.end("Hello, World!");
 });
@@ -114,7 +114,7 @@ app.on("/user", "get", (ctx) => {
 
 2. 解析body参数
 
-场景：假设服务端收到一个post请求，请求的路由为：`/user`, 并且请求体携带了JSON数据 { name: "张三" }。
+场景：假设服务端收到一个post请求，请求的路由为：`/user`, 并且请求体携带了JSON数据 `{ name: "张三" }`。
 
 ```js
 import Cuka from "cuka";
