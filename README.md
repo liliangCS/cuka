@@ -16,7 +16,7 @@ npm install cuka
 ### 快速上手
 
 ```js
-const Cuka = require("cuka");
+import Cuka from "cuka";
 
 const app = new Cuka();
 
@@ -34,7 +34,7 @@ app.on("/", "get", (ctx) => {
 1. 设置所有请求的响应头部
 
 ```js
-const Cuka = require("cuka");
+import Cuka from "cuka";
 
 const app = new Cuka();
 
@@ -53,7 +53,7 @@ app.on("/", "get", (ctx) => {
 2. 设置单个请求的响应头部
 
 ```js
-const Cuka = require("cuka");
+import Cuka from "cuka";
 
 const app = new Cuka();
 
@@ -73,7 +73,7 @@ app.on("/", "get", (ctx) => {
 中间件函数永远在请求到达路由方法处理函数之前调用。
 
 ```js
-const Cuka = require("cuka");
+import Cuka from "cuka";
 
 const app = new Cuka();
 
@@ -89,5 +89,43 @@ app.use((ctx) => {
 
 app.on("/", "get", (ctx) => {
   ctx.end("Hello, World!");
+});
+```
+
+### 参数解析
+
+1. 解析query参数
+
+场景：假设服务端选择收到一个get请求，请求的路由为：`/user?name=张三`。
+
+```js
+import Cuka from "cuka";
+
+const app = new Cuka();
+
+app.listen(3000, () => {
+  console.log("Server is listening on http://127.0.0.1:3000");
+});
+
+app.on("/user", "get", (ctx) => {
+  console.log(ctx.request.query); // 这里将打印：{ name: "张三" }
+});
+```
+
+2. 解析body参数
+
+场景：假设服务端选择收到一个post请求，请求的路由为：`/user`, 并且请求体携带了JSON数据 { name: "张三" }。
+
+```js
+import Cuka from "cuka";
+
+const app = new Cuka();
+
+app.listen(3000, () => {
+  console.log("Server is listening on http://127.0.0.1:3000");
+});
+
+app.on("/user", "post", (ctx) => {
+  console.log(ctx.request.body); // 这里将打印：{ name: "张三" }
 });
 ```
