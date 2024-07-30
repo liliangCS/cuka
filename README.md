@@ -96,7 +96,7 @@ app.on("/", "get", (ctx) => {
 
 1. 解析query参数
 
-场景：假设服务端选择收到一个get请求，请求的路由为：`/user?name=张三`。
+场景：假设服务端收到一个get请求，请求的路由为：`/user?name=张三`。
 
 ```js
 import Cuka from "cuka";
@@ -114,7 +114,7 @@ app.on("/user", "get", (ctx) => {
 
 2. 解析body参数
 
-场景：假设服务端选择收到一个post请求，请求的路由为：`/user`, 并且请求体携带了JSON数据 { name: "张三" }。
+场景：假设服务端收到一个post请求，请求的路由为：`/user`, 并且请求体携带了JSON数据 { name: "张三" }。
 
 ```js
 import Cuka from "cuka";
