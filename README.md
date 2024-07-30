@@ -67,3 +67,27 @@ app.on("/", "get", (ctx) => {
   ctx.end("Hello, World!");
 });
 ```
+
+### 使用中间件
+
+中间件函数永远在请求到达路由方法处理函数之前调用。
+
+```js
+const Cuka = require("cuka");
+
+const app = new Cuka();
+
+app.listen(3000, () => {
+  console.log("Server is listening on http://127.0.0.1:3000");
+});
+
+// 使用中间件：打印每个请求的信息：路由、方法
+app.use((ctx) => {
+  const { route, method } = ctx.request;
+  console.log(`${route} --- ${method}`);
+});
+
+app.on("/", "get", (ctx) => {
+  ctx.end("Hello, World!");
+});
+```
