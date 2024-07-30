@@ -47,7 +47,7 @@ app.on("/", "get", (ctx) => {
 
 2. 设置单个请求的响应头部
 
-```
+```js
 const Cuka = require("cuka");
 
 const app = new Cuka();
