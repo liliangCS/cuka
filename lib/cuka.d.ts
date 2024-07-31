@@ -18,9 +18,9 @@ declare module "cuka" {
     res: ServerResponse;
     request: IRequest;
     setHeader: (name: string, value: HeaderValue) => this;
-    end: (cb?: () => void) => this;
+    // end: (cb?: () => void) => this;
     end: (chunk: any, cb?: () => void) => this;
-    end: (chunk: any, encoding: BufferEncoding, cb?: () => void) => this;
+    // end: (chunk: any, encoding: BufferEncoding, cb?: () => void) => this;
   }
 
   type HeaderValue = number | string | readonly string[];

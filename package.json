@@ -1,6 +1,6 @@
 {
   "name": "cuka",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Cuka web app framework",
   "main": "dist/cuka.js",
   "exports": {
@@ -30,8 +30,5 @@
     "dist",
     "lib"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/liliangCS/cuka"
-  }
+  "repository": "liliangCS/cuka"
 }
