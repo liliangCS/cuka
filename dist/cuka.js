@@ -100,11 +100,17 @@ class Cuka {
         return;
       }
 
-      let body = "";
+      let body = [];
       req.on("data", (chunk) => {
-        body += chunk;
+        body.push(chunk);
+      });
+      req.on("error", (error) => {
+        res.writeHead(400, { "Content-Type": "text/plain" });
+        res.end("Bad Request");
+        console.error(error);
       });
       req.on("end", async () => {
+        body = Buffer.concat(body).toString();
         const ctx = {
           req,
           res,

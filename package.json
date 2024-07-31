@@ -1,6 +1,6 @@
 {
   "name": "cuka",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Cuka web app framework",
   "main": "dist/cuka.js",
   "exports": {
