@@ -83,6 +83,14 @@ class Cuka {
 
   _handleRequest(req, res) {
     try {
+      this._setGlobalHeader(res);
+      // 处理预检请求
+      if (req.method.toUpperCase() === "OPTIONS") {
+        res.writeHead(204);
+        res.end();
+        return;
+      }
+
       const { route, query } = this._parseQuery(req.url);
       const matchResult = this._matchRoute(route, req.method);
 
@@ -118,7 +126,6 @@ class Cuka {
         };
 
         try {
-          this._setGlobalHeader(res);
           for (const middleware of this._middlewares) {
             await middleware(ctx);
           }
