@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6", // 指定编译后的 JavaScript 版本，如 "es5", "es6", "es2015" 等
+    "module": "commonjs", // 指定模块系统，如 "commonjs", "es2015", "umd" 等
+    "outDir": "./dist", // 指定输出目录
+    "rootDir": "./lib", // 指定源代码目录
+    "strict": true, // 启用所有严格类型检查选项
+    "esModuleInterop": true, // 允许兼容 CommonJS 和 ES 模块
+    "skipLibCheck": true, // 跳过库文件的类型检查
+    "forceConsistentCasingInFileNames": true // 强制文件名大小写一致
+  },
+  "include": ["lib/**/*"], // 包含的文件或目录
+  "exclude": ["node_modules", "dist", "test"] // 排除的文件或目录
+}
